@@ -1,0 +1,29 @@
+variant: fcos
+version: 1.6.0
+hostname: fileserver
+domain_name: network.home
+storage:
+  # Set the timezone
+  links:
+    - path: /etc/localtime
+      target: ../usr/share/zoneinfo/Austrlaia/Sydney
+  # Set the hostname
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: fileserver.network.home
+# NOTE: We are using DHCP, if you need a static IP address then you'll need to set up the network interface parameters https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-network-configuration/
+passwd:
+  users:
+    - name: chris
+      groups:
+        - sudo
+        - wheel
+      password_hash: $6$thucEeUyGPPx36dI$z4wp.zq6qBi6WwduvlMUiz2bed3/hUIdGj8ZYcz1pAGt1Guqf2syhMUTJJa5cRcfHqsu9g/NODiq9vM3IFhFn/
+      ssh_authorized_keys:
+        # chris-windows-desktop
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAlzR0hMxa95HSwp6XapgbTmO+7Ce/qunEJYSczBp4vdaGZe4lT0RfDjUPMnJ29+BCuS0ghnEWUsmUWCoVrFxNn1Jc+D1blT/Efs9zKzxorB74nlA9IUl7rqJJOjGrG0U9few+f466zDUYhv4Bw7YarsA8xCGmUN2/WOwXphJKqdOpxMiyrRok0W3d9svEylegKA++bayos3gvWuEyKf/Dcz2pO9BamPnMXBEL1O1a29EUqlEdjBL/krpiE0Lb8X7+/9bf2aEc6piOZUwNtMO3iBba7m3K/vkWb7fIAjnqn+X3+SXPGyuNpw5S8NQ2k+noZK63VrKAk5hv3FVBdQOh chris@windows
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfSgPaDGYKQ/D03AyMyhyQRcE6X58eFnsLklZG/Wpxnx4ZXRBSg8B28h/vAqzsX2eh8CGhjsLZfqcOkDVsnbWhYKFSlYg4ZBLek53EfqH5pRTlmkHDZAN8T/iJaiT0EF+37CpkmhaGtFLvP08UHkw0fyWN2bMKE90ScezHghmuZw+YYvGieQj5p9n6gschQM4Ro1y6R7yBgfmYjiCwxntJLh2obKr92Syy2IYInpdDCEwW4HlQ3jyrtGh7tfHDdydKkKdHRPcNRA94vdEF0CD3fFA0yFtCRtnlU6m5Vg7heaI1+WRHU40npOxP//6FMoX264A6A5fpGXpmipsTBBg/D2HinDIsWWbD2MKGXVrMStAJxpxE87xzuE9+VNbpbEQiyNtU04Xx1TZ9NLOHg8GaVCub5eZ3vw/89WOF9QCz9I0l4xNOSGwkKP0GHx6CtECjHF80pkL+VNicCG8rmwbuY3JPD4lTGOgdl9/ERfz6d0EYB+aRdqs3DsX1zPxKHjKIsPFv0VOoS7H4u/hLIJsUN7be5ehI5hNeCQ0aM+mkBCeHQ87DA2cDlfnAqM42tYxnpKZ/ckuNXtVqdafWM4Vwhsuj9tkLJ2Sj0q6fw9N+ZAchj0id7J2bcoGyRThYamQUlqHM2FQSNNUf7PiUceNE8i0zwo8I41QyrVFZKB0W+w== chris@windows
+        # chris-linux-desktop
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYzQ4P0EwP10yFDuIdwyAg5nsybNQFD9MR25oSkP7UN chris@linux
