@@ -1,12 +1,10 @@
 variant: fcos
 version: 1.6.0
-hostname: fileserver
-domain_name: network.home
 storage:
   # Set the timezone
   links:
     - path: /etc/localtime
-      target: ../usr/share/zoneinfo/Austrlaia/Sydney
+      target: ../usr/share/zoneinfo/Australia/Sydney
   # Set the hostname
   files:
     - path: /etc/hostname
